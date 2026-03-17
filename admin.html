@@ -364,7 +364,7 @@
     </footer>
 
     <script>
-            const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz_QXV7BWFgtw7YI8lJUFNrPn1h2laH9juiw5yLNM21wWsUFHjvWxxHNIZniYp8oB7W/exec";
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz_QXV7BWFgtw7YI8lJUFNrPn1h2laH9juiw5yLNM21wWsUFHjvWxxHNIZniYp8oB7W/exec";
 
         const role = localStorage.getItem("userRole");
         const userID = localStorage.getItem("userEmail");
@@ -733,13 +733,17 @@ async function loadStaffStats() {
         });
 
         const result = await response.json();
-        //allStatsData = result.statsList || [];
+        if (result.status === "error"){
+            container.innerHTML = '<p class="text-center w-100 text-muted small py-3">لا توجد إحصائيات رفع متاحة حالياً</p>';
+            return;
+        }
+        allStatsData = result.statsList || [];
         // الوصول للمصفوفة داخل الكائن المرسل من الباك إند
         const stats = result.statsList || []; 
         
         container.innerHTML = '';
 
-        if (result.status !== "error" || !stats || stats.length === 0) {
+        if (!stats || stats.length === 0) {
             container.innerHTML = '<p class="text-center w-100 text-muted small py-3">لا توجد إحصائيات رفع متاحة حالياً</p>';
             return;
         }

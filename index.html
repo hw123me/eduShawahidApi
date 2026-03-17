@@ -250,7 +250,7 @@
                 localStorage.setItem("userName", result.fullname);
                 localStorage.setItem("userRole", result.role);
                 localStorage.setItem("userEmail", email);
-                window.location.href = (result.role.trim() === "مدير") ? "admin.html" : "dashboard.html";
+                window.location.href = (result.role.trim() === "admin") ? "admin.html" : "dashboard.html";
             } else {
                 Swal.fire('فشل الدخول', 'البريد أو كلمة المرور غير صحيحة', 'error');
             }
