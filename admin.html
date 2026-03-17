@@ -733,13 +733,13 @@ async function loadStaffStats() {
         });
 
         const result = await response.json();
-        allStatsData = result.statsList || [];
+        //allStatsData = result.statsList || [];
         // الوصول للمصفوفة داخل الكائن المرسل من الباك إند
-        const stats = result.statsList; 
+        const stats = result.statsList || []; 
         
         container.innerHTML = '';
 
-        if (!stats || stats.length === 0) {
+        if (result.status !== "error" || !stats || stats.length === 0) {
             container.innerHTML = '<p class="text-center w-100 text-muted small py-3">لا توجد إحصائيات رفع متاحة حالياً</p>';
             return;
         }
