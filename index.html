@@ -276,7 +276,8 @@
     
 
     if (!email) {
-        errorMsg.innerText = "يرجى كتابة البريد الإلكتروني أولاً.";
+      //  errorMsg.innerText = "يرجى كتابة البريد الإلكتروني أولاً.";
+        Swal.fire('تنبيه', 'يرجى كتابة البريد الإلكتروني أولاً', 'warning');
         return;
     }
 
@@ -292,9 +293,11 @@
         const data = await response.json();
         
         if (data.status === "success") {
+            Swal.fire('نجاح', 'تم إرسال كلمة المرور بنجاح، تفقد بريدك.', 'success');
             errorMsg.innerText = "تم إرسال كلمة المرور بنجاح، تفقد بريدك.";
             errorMsg.className = "text-success mt-3 text-center small";
         } else {
+            Swal.fire('خطأ', 'البريد غير مسجل أو حدث خطأ في النظام.', 'error');
             errorMsg.innerText = "البريد غير مسجل أو حدث خطأ في النظام.";
             errorMsg.className = "text-danger mt-3 text-center small";
         }
